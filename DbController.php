@@ -22,36 +22,16 @@ class DbController {
 
     public function getPostsAll(): array
     {
-        $sql = <<< EOL
-SELECT
-    title,
-    name,
-    mailaddress,
-    content,
-    COALESCE(CONCAT(s.last_name, ' ', s.first_name),'未割当') as full_name,
-    c.created_at
-FROM contacts AS c
-LEFT OUTER JOIN staffs AS s
-ON c.staff_id = s.id
-EOL;
-        return $this->dbh
-            ->query($sql)
-            ->fetchAll(PDO::FETCH_ASSOC);
+        $sql = '';
+
+        return [];
     }
 
     public function insertContact($post)
     {
-        $sql =  <<<EOL
-INSERT INTO contacts(title,name,mailaddress,content)
-VALUES (?,?,?,?)
-EOL;
-        $stmt = $this->dbh->prepare($sql);
-        return $stmt->execute([
-            $post['title'],
-            $post['name'],
-            $post['mailaddress'],
-            $post['content'],
-        ]);
+        $sql = '';
+        $stmt = '';
+        return true;
     }
 }
 
